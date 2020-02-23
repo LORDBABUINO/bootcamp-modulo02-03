@@ -34,9 +34,9 @@ class SessionController {
       return res.status(401).json({ error: 'User not found' })
     }
 
-    const { id, name, avatar } = user
+    const { id, name, avatar, provider } = user
     return res.json({
-      user: { id, name, email, avatar },
+      user: { id, name, email, avatar, provider },
       token: jwt.sign({ id }, auth.secret, {
         expiresIn: auth.expiresIn,
       }),
