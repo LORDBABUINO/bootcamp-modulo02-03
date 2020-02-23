@@ -24,10 +24,15 @@ class Database {
   }
 
   mongo() {
-    this.mongoConnection = mongoose.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useFindAndModify: true,
-    })
+    const { MONGO_HOST, MONGO_PORT, MONGO_DB } = process.env
+    this.mongoConnection = mongoose.connect(
+      `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`,
+      {
+        useNewUrlParser: true,
+        useFindAndModify: true,
+        useUnifiedTopology: true,
+      }
+    )
   }
 }
 
